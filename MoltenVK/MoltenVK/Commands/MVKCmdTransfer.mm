@@ -851,6 +851,7 @@ void MVKCmdClearImage::setContent(VkImage image,
 
     if (_isDepthStencilClear) {
         _rpsKey.enable(kMVKAttachmentFormatDepthStencilIndex);
+        _rpsKey.attachmentMTLPixelFormats[kMVKAttachmentFormatDepthStencilIndex] =_image->getMTLPixelFormat();
         float mtlDepthVal = mvkMTLClearDepthFromVkClearValue(clearValue);
         _clearColors[kMVKAttachmentFormatDepthStencilIndex] = { mtlDepthVal, mtlDepthVal, mtlDepthVal, mtlDepthVal };
         _mtlStencilValue = mvkMTLClearStencilFromVkClearValue(clearValue);
